@@ -1,0 +1,6 @@
+﻿  main.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 22 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  usermode_app.vcxproj -> C:\Users\anuwat\source\repos\kernelmode_app\x64\Release\usermode_app.exe

@@ -1,0 +1,80 @@
+;
+; kernelmode_app.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=kernelmode_app.cat
+DriverVer = 04/18/2022,21.43.14.340
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+kernelmode_app_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+kernelmode_app.sys  = 1,,
+;
+
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%kernelmode_app.DeviceDesc%=kernelmode_app_Device, Root\kernelmode_app ; TODO: edit hw-id
+
+[kernelmode_app_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+kernelmode_app.sys
+
+;-------------- Service installation
+[kernelmode_app_Device.NT.Services]
+AddService = kernelmode_app,%SPSVCINST_ASSOCSERVICE%, kernelmode_app_Service_Inst
+
+; -------------- kernelmode_app driver install sections
+[kernelmode_app_Service_Inst]
+DisplayName    = %kernelmode_app.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\kernelmode_app.sys
+
+;
+;--- kernelmode_app_Device Coinstaller installation ------
+;
+
+[kernelmode_app_Device.NT.CoInstallers]
+AddReg=kernelmode_app_Device_CoInstaller_AddReg
+CopyFiles=kernelmode_app_Device_CoInstaller_CopyFiles
+
+[kernelmode_app_Device_CoInstaller_AddReg]
+;
+
+
+[kernelmode_app_Device_CoInstaller_CopyFiles]
+;
+
+
+[kernelmode_app_Device.NT.Wdf]
+KmdfService =  kernelmode_app, kernelmode_app_wdfsect
+[kernelmode_app_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "kernelmode_app Installation Disk"
+kernelmode_app.DeviceDesc = "kernelmode_app Device"
+kernelmode_app.SVCDESC = "kernelmode_app Service"

@@ -1,0 +1,12 @@
+﻿  Building 'kernelmode_app' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\kernelmode_app.inf
+  Stamping [Version] section with DriverVer=04/18/2022,21.43.14.340
+  hook.cpp
+  main.cpp
+  memory.cpp
+C:\Users\anuwat\source\repos\kernelmode_app\kernelmode_app\memory.cpp(61,60): warning C4267: 'argument': conversion from 'size_t' to 'ULONG', possible loss of data
+C:\Users\anuwat\source\repos\kernelmode_app\kernelmode_app\memory.cpp(99,45): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'ULONG'
+C:\Users\anuwat\source\repos\kernelmode_app\kernelmode_app\memory.cpp(99,45): warning C4302: 'type cast': truncation from 'PVOID' to 'ULONG'
+  Generating Code...
+  kernelmode_app.vcxproj -> C:\Users\anuwat\source\repos\kernelmode_app\x64\Release\kernelmode_app.sys
+  Driver is 'Universal'.
